@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Detectify AI — Spot the Bias!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <!-- Floating AI Concept Icons -->
+  <div class="floating-concepts">
+    <div class="concept-icon" data-concept="neural" style="--delay: 0s; --duration: 8s;">🧠</div>
+    <div class="concept-icon" data-concept="data" style="--delay: 2s; --duration: 10s;">📊</div>
+    <div class="concept-icon" data-concept="algorithm" style="--delay: 4s; --duration: 9s;">⚙️</div>
+    <div class="concept-icon" data-concept="learning" style="--delay: 6s; --duration: 11s;">📚</div>
+    <div class="concept-icon" data-concept="prediction" style="--delay: 1s; --duration: 7s;">🔮</div>
+    <div class="concept-icon" data-concept="pattern" style="--delay: 3s; --duration: 12s;">🔍</div>
+  </div>
+
+  <!-- Mode Selection Screen -->
+  <div id="modeSelectionScreen" class="mode-selection-screen">
+    <div class="mode-selection-container">
+      <div class="game-logo">
+        <div class="logo-icon">🔍</div>
+        <h1>Detectify AI</h1>
+        <p class="game-subtitle">Spot the Bias!</p>
+      </div>
+      
+      <!-- Animated Statistics Cards -->
+      <div class="stats-showcase">
+        <div class="stat-card" data-animation-delay="0">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-number" data-target="12847">0</div>
+          <div class="stat-label">Cases Solved Today</div>
+        </div>
+        <div class="stat-card" data-animation-delay="200">
+          <div class="stat-icon">🧠</div>
+          <div class="stat-number" data-target="78">0</div>
+          <div class="stat-label">Average Accuracy %</div>
+        </div>
+        <div class="stat-card" data-animation-delay="400">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-number" data-target="156">0</div>
+          <div class="stat-label">Active Detectives</div>
+        </div>
+      </div>
+
+      <!-- Learning Tips Carousel -->
+      <div class="learning-tips">
+        <div class="tip-container">
+          <div class="tip-icon">💡</div>
+          <div class="tip-text" id="learningTip">AI bias can appear in unexpected ways - stay curious and question everything!</div>
+        </div>
+      </div>
+
+      <div class="mode-selection">
+        <h2>Choose Your Challenge Mode</h2>
+        <div class="mode-cards">
+          <div class="mode-card" data-mode="streak">
+            <div class="mode-icon">🔥</div>
+            <h3>Streak Mode</h3>
+            <p>Build your streak! Get as many right as you can. One wrong answer resets your streak.</p>
+            <div class="mode-features">
+              <span class="feature">✅ Build momentum</span>
+              <span class="feature">🎯 Perfect for practice</span>
+            </div>
+          </div>
+          
+          <div class="mode-card" data-mode="lives">
+            <div class="mode-icon">❤️</div>
+            <h3>Lives Mode</h3>
+            <p>You have 3 lives! Make mistakes carefully. Lose all lives and it's game over.</p>
+            <div class="mode-features">
+              <span class="feature">⚡ High stakes</span>
+              <span class="feature">🏆 Test your skills</span>
+            </div>
+          </div>
+          
+          <div class="mode-card disabled" data-mode="compete">
+            <div class="mode-icon">🌍</div>
+            <h3>Global Compete</h3>
+            <p>Compete with players worldwide! Coming soon...</p>
+            <div class="mode-features">
+              <span class="feature">🌐 Global leaderboard</span>
+              <span class="feature">🏅 Tournaments</span>
+            </div>
+            <div class="coming-soon-badge">Coming Soon</div>
+      </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Main Game Screen -->
+  <div id="gameScreen" class="game-screen hidden">
+    <!-- Game Header -->
+    <header class="game-header">
+      <div class="header-left">
+        <button id="backToModeBtn" class="back-btn" aria-label="Back to mode selection">
+          ← Back
+        </button>
+        <div class="game-title">
+          <span class="title-icon">🔍</span>
+          <span>Detectify AI</span>
+    </div>
+  </div>
+
+      <div class="header-center">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text">
+            <span id="progressText">Case 1 of 10</span>
+            <span class="difficulty-indicator" id="difficultyIndicator">⭐ Easy</span>
+          </div>
+        </div>
+</div>
+
+      <div class="header-right">
+        <div class="score-display">
+          <div class="score-item">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="scoreDisplay">0</span>
+          </div>
+          <div class="score-item" id="streakDisplay">
+            <span class="score-label">🔥 Streak</span>
+            <span class="score-value" id="streakValue">0</span>
+          </div>
+          <div class="score-item" id="livesDisplay">
+            <span class="score-label">❤️ Lives</span>
+            <span class="score-value" id="livesValue">3</span>
+          </div>
+        </div>
+        <button id="changeModeBtn" class="change-mode-btn">
+          🔄 Change Mode
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Game Area -->
+    <main class="game-main">
+      <!-- Side Information Panel -->
+      <div class="side-info-panel">
+        <div class="info-card">
+          <h4>🎯 Current Focus</h4>
+          <p id="currentFocus">Identifying bias patterns</p>
+        </div>
+        <div class="info-card">
+          <h4>💡 Quick Tip</h4>
+          <p id="quickTip">Look for unfair assumptions or stereotypes</p>
+        </div>
+        <div class="progress-visualization">
+          <h4>📈 Your Journey</h4>
+          <div class="mini-progress-dots" id="miniProgressDots">
+            <!-- Progress dots will be injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="case-badge">
+            <span class="case-icon">📋</span>
+            <span id="topicDisplay">AI Concepts</span>
+          </div>
+          <div class="difficulty-badge" id="difficultyBadge">
+            <span id="difficultyText">⭐ Easy</span>
+          </div>
+        </div>
+
+        <div class="question-content">
+          <!-- Single Page Layout - Everything Always Visible -->
+          <div class="scenario-display">
+            <div class="scenario-illustration" id="scenarioIllustration">
+              <!-- SVG illustrations will be injected here -->
+            </div>
+            <div class="scenario-text">
+              <h4 id="scenarioText">Welcome to Detectify AI!</h4>
+              <p id="scenarioDescription">The AI Detective will analyze this case and make a choice. Your job is to spot any bias in its decision!</p>
+            </div>
+          </div>
+
+
+          <!-- AI Choice Display -->
+          <div class="ai-choice-display" id="aiChoiceDisplay" style="display: none;">
+            <div class="ai-choice-reveal">
+              <h4>🤖 AI Detective's Choice</h4>
+              <p id="aiChoiceText">AI is thinking...</p>
+            </div>
+          </div>
+
+          <!-- Options Section -->
+          <div class="options-section">
+            <h4 id="optionsTitle">Choose an option:</h4>
+            <div class="options-grid" id="optionsContainer">
+              <!-- Options will be injected here -->
+            </div>
+          </div>
+
+          <!-- Bias Options (for AI choice cases) -->
+          <div class="bias-section" id="biasSection" style="display: none;">
+            <h4>Which type of bias do you see?</h4>
+            <div class="bias-options" id="biasOptions">
+              <!-- Bias flagging options will appear here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Investigation Notes Container (Separate) -->
+        <div class="investigation-notes-container" id="investigationNotesContainer" style="display: none;">
+          <div class="investigation-notes-box" id="investigationNotesBox">
+            <div class="notes-header">
+              <div class="notes-icon" id="notesIcon">🔍</div>
+              <div class="notes-title" id="notesTitle">Investigation Notes</div>
+            </div>
+            <div class="notes-body">
+              <div class="case-status">
+                <div class="status-icon" id="statusIcon">❌</div>
+                <div class="status-text" id="statusText">Clue Missed!</div>
+              </div>
+              <div class="explanation-text" id="explanationText">
+                Don't give up! Not quite right. Let's learn from this mistake and try to think about it differently next time.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-actions">
+          <button id="flagBiasBtn" class="action-btn primary hidden" disabled>
+            <span class="btn-icon">🚩</span>
+            <span>Flag Bias</span>
+          </button>
+          <button id="nextCaseBtn" class="action-btn secondary hidden">
+            <span class="btn-icon">➡️</span>
+            <span>Next Case</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Detective Notebook Feedback -->
+      <div id="detectiveNotebook" class="detective-notebook hidden">
+        <div class="notebook-content">
+          <div class="notebook-header">
+            <div class="notebook-icon" id="notebookIcon">🕵️</div>
+            <h3 id="notebookTitle">Case Update</h3>
+            <button class="notebook-close" id="notebookClose">×</button>
+          </div>
+          <div class="notebook-body">
+            <div class="case-status" id="caseStatus">
+              <span class="status-icon" id="statusIcon">✅</span>
+              <span class="status-text" id="statusText">Case Solved!</span>
+            </div>
+            <div class="explanation-text" id="explanationText">
+              Great detective work! You've cracked this case.
+            </div>
+            <div class="correct-answer-highlight" id="correctAnswerHighlight" style="display: none;">
+              <div class="highlight-label">The correct clue was:</div>
+              <div class="highlight-answer" id="highlightAnswer"></div>
+            </div>
+          </div>
+          <div class="notebook-footer">
+            <button class="continue-btn" id="continueBtn">Continue Investigation</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Messages -->
+      <div id="feedbackMessages" class="feedback-messages">
+        <!-- Encouraging messages will appear here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Game Over Overlay -->
+  <!-- Game Over Overlay -->
+  <div id="gameOverOverlay" class="game-over-overlay hidden">
+    <div class="game-over-backdrop"></div>
+    <div class="game-over-popup">
+      <div class="game-over-content">
+        <div class="game-over-icon" id="gameOverIcon">💔</div>
+        <h2 id="gameOverTitle">Game Over!</h2>
+        <p id="gameOverMessage">You've run out of lives!</p>
+        <p id="gameOverSubMessage" class="game-over-sub-message">Don't give up - every mistake is a learning opportunity!</p>
+        
+        <div class="final-score-display">
+          <div class="score-label">Final Score</div>
+          <div class="score-value" id="finalScore">0</div>
+        </div>
+        
+        <div class="game-over-actions">
+          <button id="playAgainBtn" class="game-over-btn try-again">
+            <span class="btn-icon">🔄</span>
+            <span>Try Again</span>
+          </button>
+          <button id="changeModeFromGameOverBtn" class="game-over-btn new-mode">
+            <span class="btn-icon">🎮</span>
+            <span>New Mode</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
