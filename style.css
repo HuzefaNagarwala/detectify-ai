@@ -1071,11 +1071,48 @@ body::after {
   transform: scale(1.1);
 }
 
-/* Responsive Design for Side Panel */
+/* ===========================
+   Enhanced Mobile Responsiveness
+   =========================== */
+
+/* Large Tablets and Small Laptops */
+@media (max-width: 1024px) {
+  .game-main {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .mode-cards {
+    gap: var(--space-lg);
+    padding: 0 var(--space-md);
+  }
+  
+  .mode-card {
+    min-width: 250px;
+    max-width: 300px;
+  }
+  
+  .scenario-display {
+    grid-template-columns: 150px 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .scenario-illustration {
+    width: 150px;
+    height: 120px;
+  }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
   .game-main {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
+    padding: var(--space-lg);
   }
   
   .side-info-panel {
@@ -1084,11 +1121,290 @@ body::after {
     flex-direction: row;
     overflow-x: auto;
     padding-bottom: var(--space-sm);
+    gap: var(--space-md);
   }
   
   .info-card {
-    min-width: 200px;
+    min-width: 180px;
     flex-shrink: 0;
+    padding: var(--space-md);
+  }
+  
+  .mode-cards {
+    gap: var(--space-md);
+    padding: 0 var(--space-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .mode-card {
+    min-width: 220px;
+    max-width: 280px;
+    padding: var(--space-lg);
+  }
+  
+  .scenario-display {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+  
+  .scenario-illustration {
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  .options-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  .bias-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  
+  .game-header {
+    padding: var(--space-md) var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  
+  .header-center {
+    order: 2;
+    flex-basis: 100%;
+    margin: var(--space-sm) 0;
+  }
+  
+  .header-left, .header-right {
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .score-display {
+    gap: var(--space-md);
+  }
+  
+  .question-content {
+    padding: var(--space-lg);
+  }
+  
+  .action-btn {
+    min-width: 140px;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-sm);
+  }
+  
+  .question-actions {
+    padding: var(--space-md) var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  .app {
+    padding: var(--space-sm);
+  }
+  
+  .mode-selection-screen {
+    padding: var(--space-md);
+  }
+  
+  .mode-selection-container {
+    max-width: 100%;
+  }
+  
+  .game-logo h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .game-subtitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .mode-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  
+  .mode-card {
+    width: 100%;
+    max-width: 300px;
+    min-width: auto;
+    padding: var(--space-lg);
+  }
+  
+  .mode-card h3 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .mode-card p {
+    font-size: var(--font-size-sm);
+  }
+  
+  .game-main {
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .side-info-panel {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .info-card {
+    min-width: auto;
+    padding: var(--space-sm);
+  }
+  
+  .scenario-illustration {
+    height: 120px;
+  }
+  
+  .scenario-text h4 {
+    font-size: var(--font-size-base);
+  }
+  
+  .scenario-text p {
+    font-size: var(--font-size-sm);
+  }
+  
+  .bias-options {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+  
+  .bias-option {
+    padding: var(--space-md);
+  }
+  
+  .bias-text {
+    font-size: var(--font-size-xs);
+  }
+  
+  .game-header {
+    padding: var(--space-sm) var(--space-md);
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+  
+  .header-left, .header-right {
+    justify-content: space-between;
+  }
+  
+  .header-center {
+    order: 1;
+    margin: 0;
+  }
+  
+  .score-display {
+    justify-content: space-around;
+  }
+  
+  .question-content {
+    padding: var(--space-md);
+  }
+  
+  .question-actions {
+    padding: var(--space-sm) var(--space-md);
+    flex-direction: column;
+  }
+  
+  .action-btn {
+    width: 100%;
+    min-width: auto;
+    padding: var(--space-md);
+    font-size: var(--font-size-base);
+  }
+  
+  .investigation-notes-container {
+    margin-top: var(--space-md);
+  }
+  
+  .investigation-notes-box {
+    padding: var(--space-md);
+  }
+  
+  .notes-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .status-text {
+    font-size: var(--font-size-base);
+  }
+  
+  .explanation-text {
+    font-size: var(--font-size-sm);
+    padding: var(--space-sm);
+  }
+  
+  .game-over-content {
+    padding: var(--space-lg);
+    margin: var(--space-sm);
+  }
+  
+  .game-over-title {
+    font-size: 2rem;
+  }
+  
+  .score-value {
+    font-size: 2rem;
+  }
+  
+  .game-over-btn {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 360px) {
+  .mode-card {
+    padding: var(--space-md);
+  }
+  
+  .mode-card h3 {
+    font-size: var(--font-size-base);
+  }
+  
+  .mode-card p {
+    font-size: var(--font-size-xs);
+  }
+  
+  .scenario-illustration {
+    height: 100px;
+  }
+  
+  .bias-option {
+    padding: var(--space-sm);
+  }
+  
+  .action-btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+  
+  .game-over-content {
+    padding: var(--space-md);
+  }
+  
+  .game-over-title {
+    font-size: 1.8rem;
+  }
+  
+  .score-value {
+    font-size: 1.8rem;
   }
 }
 
@@ -2182,6 +2498,109 @@ body::after {
   display: flex;
   gap: var(--space-md);
   justify-content: center;
+}
+
+/* ===========================
+   Touch-Friendly Improvements
+   =========================== */
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  .option-item {
+    min-height: 60px;
+    padding: var(--space-lg);
+    font-size: var(--font-size-base);
+  }
+  
+  .bias-option {
+    min-height: 80px;
+    padding: var(--space-lg);
+  }
+  
+  .action-btn {
+    min-height: 48px;
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .back-btn, .change-mode-btn {
+    min-height: 44px;
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .mode-card {
+    min-height: 200px;
+  }
+  
+  /* Improve tap targets */
+  button, .option-item, .bias-option, .mode-card {
+    -webkit-tap-highlight-color: rgba(79, 140, 255, 0.2);
+    tap-highlight-color: rgba(79, 140, 255, 0.2);
+  }
+  
+  /* Better spacing for touch */
+  .question-actions {
+    gap: var(--space-md);
+  }
+  
+  .mode-cards {
+    gap: var(--space-lg);
+  }
+  
+  .bias-options {
+    gap: var(--space-md);
+  }
+}
+
+/* ===========================
+   Accessibility Improvements
+   =========================== */
+
+/* Focus indicators for keyboard navigation */
+.option-item:focus,
+.bias-option:focus,
+.action-btn:focus,
+.mode-card:focus {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .option-item {
+    border-width: 3px;
+  }
+  
+  .bias-option {
+    border-width: 3px;
+  }
+  
+  .action-btn {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mode-card:hover {
+    transform: none;
+  }
+  
+  .option-item:hover,
+  .bias-option:hover {
+    transform: none;
+  }
+  
+  .action-btn:hover {
+    transform: none;
+  }
+  
+  .concept-icon {
+    animation: none;
+  }
+  
+  .floating-concepts {
+    display: none;
+  }
 }
 
 /* ===========================
