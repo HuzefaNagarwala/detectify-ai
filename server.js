@@ -34,6 +34,11 @@ app.use(express.json({ limit: '1mb' }));
 // Serve frontend
 app.use(express.static(__dirname));
 
+// Root route - serve index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Enhanced AI Topics for Diverse Learning
 const AI_TOPICS = [
   'Temperature', 'Inference', 'Feature engineering', 'Hallucinations', 'Overfitting',
